@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: [process.env.FRONTEND_URL, "https://hackhive-job.vercel.app/"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
