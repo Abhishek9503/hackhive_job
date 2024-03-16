@@ -19,19 +19,13 @@ app.use(
     origin: [
       "*",
       process.env.FRONTEND_URL,
-      "https://hackhive-job.vercel.app/",
+      "https://hackhive-job.vercel.app",
       "http://localhost:5173",
     ],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://hackhive-job.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 
 app.use(cookieParser());
 app.use(express.json());
