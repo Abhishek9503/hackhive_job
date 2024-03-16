@@ -16,15 +16,20 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["*", process.env.FRONTEND_URL, "https://hackhive-job.vercel.app/", "http://localhost:5173"],
+    origin: [
+      "*",
+      process.env.FRONTEND_URL,
+      "https://hackhive-job.vercel.app/",
+      "http://localhost:5173",
+    ],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
-app.all('*', function(req, res, next) {
-  const origin = cors.origin.includes(req.header('origin').toLowerCase()) ? req.headers.origin : cors.default;
-  res.header("Access-Control-Allow-Origin", origin);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
