@@ -27,7 +27,7 @@ const App = () => {
           {
             headers: {
               'Content-Type': 'application/json',
-              "Authorization": `{Cookies.get("token")}`
+              "Authorization": `${Cookies.get("token")}`
             },
             withCredentials: true,
           }
