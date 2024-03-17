@@ -6,7 +6,6 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
-import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,8 +22,7 @@ const Login = () => {
         { email, password, role },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: Cookies.get("token"),
+            "Content-Type": "application/json",
           },
           withCredentials: true,
         }
