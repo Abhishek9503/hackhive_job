@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Cookies from "js-cookie";
 
-
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
@@ -20,9 +19,7 @@ const Navbar = () => {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization:
-              Cookies.get("token") ||
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+            Authorization: Cookies.get("token"),
           },
         }
       );

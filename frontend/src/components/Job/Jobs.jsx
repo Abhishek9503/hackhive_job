@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 import Cookies from "js-cookie";
 
-
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
@@ -16,9 +15,7 @@ const Jobs = () => {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization:
-              Cookies.get("token") ||
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+            Authorization: Cookies.get("token"),
           },
         })
         .then((res) => {

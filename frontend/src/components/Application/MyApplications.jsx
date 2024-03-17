@@ -19,23 +19,29 @@ const MyApplications = () => {
     try {
       if (user && user.role === "Employer") {
         axios
-          .get("https://hackhive-job.onrender.com/api/v1/application/employer/getall", {
-            withCredentials: true,
-          })
+          .get(
+            "https://hackhive-job.onrender.com/api/v1/application/employer/getall",
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => {
             setApplications(res.data.applications);
           });
       } else {
         axios
-          .get("https://hackhive-job.onrender.com/api/v1/application/jobseeker/getall", {
-            withCredentials: true,
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization:
-                Cookies.get("token") ||
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
-            },
-          })
+          .get(
+            "https://hackhive-job.onrender.com/api/v1/application/jobseeker/getall",
+            {
+              withCredentials: true,
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization:
+                  Cookies.get("token") ||
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+              },
+            }
+          )
           .then((res) => {
             setApplications(res.data.applications);
           });
@@ -52,15 +58,16 @@ const MyApplications = () => {
   const deleteApplication = (id) => {
     try {
       axios
-        .delete(`https://hackhive-job.onrender.com/api/v1/application/delete/${id}`, {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization:
-              Cookies.get("token") ||
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
-          },
-        })
+        .delete(
+          `https://hackhive-job.onrender.com/api/v1/application/delete/${id}`,
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: Cookies.get("token"),
+            },
+          }
+        )
         .then((res) => {
           toast.success(res.data.message);
           setApplications((prevApplication) =>

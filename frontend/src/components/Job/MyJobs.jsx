@@ -7,7 +7,6 @@ import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editingMode, setEditingMode] = useState(null);
@@ -20,12 +19,13 @@ const MyJobs = () => {
       try {
         const { data } = await axios.get(
           "https://hackhive-job.onrender.com/api/v1/job/getmyjobs",
-          { withCredentials: true, headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization:
-              Cookies.get("token") ||
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
-          }, }
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: Cookies.get("token"),
+            },
+          }
         );
         setMyJobs(data.myJobs);
       } catch (error) {
@@ -54,15 +54,19 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`https://hackhive-job.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization:
-            Cookies.get("token") ||
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
-        },
-      })
+      .put(
+        `https://hackhive-job.onrender.com/api/v1/job/update/${jobId}`,
+        updatedJob,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              Cookies.get("token") ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+          },
+        }
+      )
       .then((res) => {
         toast.success(res.data.message);
         setEditingMode(null);
