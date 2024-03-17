@@ -4,7 +4,7 @@ import ErrorHandler from "./error.js";
 import jwt from "jsonwebtoken";
 
 export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
-  const { token } = req.cookies || req.headers.Authorization;
+  const { token } = req.cookies || req.headers.authorization;
   console.log(token, req.cookies, req.headers);
   if (!token) {
     return next(new ErrorHandler("Use r Not Authorized", 401));

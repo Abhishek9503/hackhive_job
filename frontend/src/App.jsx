@@ -16,6 +16,7 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
+import Cookies from "js-cookie";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -27,8 +28,10 @@ const App = () => {
           "https://hackhive-job.onrender.com/api/v1/user/getuser",
           {
             headers: {
-              'Content-Type': 'application/json',
-              "Authorization": `${Cookies.get("token")||"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE"}`
+              "Content-Type": "application/json",
+              Authorization:
+                Cookies.get("token") ||
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
             },
             withCredentials: true,
           }
@@ -36,6 +39,7 @@ const App = () => {
         setUser(response.data.user);
         setIsAuthorized(true);
       } catch (error) {
+        console.log(error);
         setIsAuthorized(false);
       }
     };
