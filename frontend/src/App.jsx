@@ -26,7 +26,8 @@ const App = () => {
           "https://hackhive-job.onrender.com/api/v1/user/getuser",
           {
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              "Authorization": `{Cookies.get("token")}`
             },
             withCredentials: true,
           }
