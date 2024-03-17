@@ -30,8 +30,7 @@ const App = () => {
             headers: {
               "Content-Type": "application/json",
               Authorization:
-                Cookies.get("token") ||
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+                Cookies.get("token")
             },
             withCredentials: true,
           }
