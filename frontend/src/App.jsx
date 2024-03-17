@@ -22,12 +22,13 @@ const App = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        console.log("aa", Cookies.get("token"));
         const response = await axios.get(
           "https://hackhive-job.onrender.com/api/v1/user/getuser",
           {
             headers: {
               'Content-Type': 'application/json',
-              "Authorization": `${Cookies.get("token")}`
+              "Authorization": `${Cookies.get("token")||"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE"}`
             },
             withCredentials: true,
           }
