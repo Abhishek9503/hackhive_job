@@ -9,6 +9,7 @@ import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import morgan from "morgan";
 
 dotenv.configDotenv();
 const app = express();
@@ -36,6 +37,8 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
+app.use(morgan("dev"));
+
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
