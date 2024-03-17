@@ -3,6 +3,8 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
+import Cookies from "js-cookie";
+
 const Application = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -41,9 +43,13 @@ const Application = () => {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization:
+              Cookies.get("token") ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
           },
         }
       );
+
       setName("");
       setEmail("");
       setCoverLetter("");

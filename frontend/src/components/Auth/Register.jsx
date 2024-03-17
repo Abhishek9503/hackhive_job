@@ -8,6 +8,8 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import Cookies from "js-cookie";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +28,10 @@ const Register = () => {
         { name, phone, email, role, password },
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              Cookies.get("token") ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
           },
           withCredentials: true,
         }

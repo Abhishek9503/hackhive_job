@@ -5,6 +5,8 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -18,7 +20,12 @@ const MyJobs = () => {
       try {
         const { data } = await axios.get(
           "https://hackhive-job.onrender.com/api/v1/job/getmyjobs",
-          { withCredentials: true }
+          { withCredentials: true, headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              Cookies.get("token") ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+          }, }
         );
         setMyJobs(data.myJobs);
       } catch (error) {
@@ -49,6 +56,12 @@ const MyJobs = () => {
     await axios
       .put(`https://hackhive-job.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization:
+            Cookies.get("token") ||
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+        },
       })
       .then((res) => {
         toast.success(res.data.message);
@@ -64,6 +77,12 @@ const MyJobs = () => {
     await axios
       .delete(`https://hackhive-job.onrender.com/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization:
+            Cookies.get("token") ||
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+        },
       })
       .then((res) => {
         toast.success(res.data.message);

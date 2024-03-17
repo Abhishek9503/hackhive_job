@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
+import Cookies from "js-cookie";
 
 const MyApplications = () => {
   const { user } = useContext(Context);
@@ -28,6 +29,12 @@ const MyApplications = () => {
         axios
           .get("https://hackhive-job.onrender.com/api/v1/application/jobseeker/getall", {
             withCredentials: true,
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization:
+                Cookies.get("token") ||
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+            },
           })
           .then((res) => {
             setApplications(res.data.applications);
@@ -47,6 +54,12 @@ const MyApplications = () => {
       axios
         .delete(`https://hackhive-job.onrender.com/api/v1/application/delete/${id}`, {
           withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              Cookies.get("token") ||
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
+          },
         })
         .then((res) => {
           toast.success(res.data.message);
