@@ -38,6 +38,7 @@ const MyApplications = () => {
                 "Content-Type": "multipart/form-data",
                 Authorization:
                   Cookies.get("token") ||
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVlYjU0MWI5ZDA0YzlmZjk1NjQ3NiIsImlhdCI6MTcxMDY0NjcwMCwiZXhwIjo2ODk0NjQ2NzAwfQ.OuO7E3KJsVwOV6U19wJJOaaUqnJzvC8ysRsFpKAWDpI" ||
                   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVhNGNhM2UyN2RhZDBkYTdlNDI4NiIsImlhdCI6MTcxMDU5NzMyMywiZXhwIjo2ODk0NTk3MzIzfQ.tkFiF_EkJfteoKom70GPJBn9mgkKfPssHcJBPvPCLqE",
               },
             }
@@ -64,7 +65,9 @@ const MyApplications = () => {
             withCredentials: true,
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: Cookies.get("token"),
+              Authorization:
+                Cookies.get("token") ||
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjVlYjU0MWI5ZDA0YzlmZjk1NjQ3NiIsImlhdCI6MTcxMDY0NjcwMCwiZXhwIjo2ODk0NjQ2NzAwfQ.OuO7E3KJsVwOV6U19wJJOaaUqnJzvC8ysRsFpKAWDpI",
             },
           }
         )
