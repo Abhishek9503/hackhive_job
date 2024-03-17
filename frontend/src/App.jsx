@@ -25,6 +25,9 @@ const App = () => {
         const response = await axios.get(
           "https://hackhive-job.onrender.com/api/v1/user/getuser",
           {
+            headers: {
+              'Content-Type': 'application/json'
+            },
             withCredentials: true,
           }
         );
