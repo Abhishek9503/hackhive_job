@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log("aa", Cookies.get("token"));
+        console.log("aa", Cookies.get("token"), localStorage.getItem("token"));
         const response = await axios.get(
           "https://hackhive-job.onrender.com/api/v1/user/getuser",
           {

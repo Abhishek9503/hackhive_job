@@ -32,6 +32,7 @@ const Login = () => {
       setPassword("");
       setRole("");
       setIsAuthorized(true);
+      localStorage.setItem("token", Cookies.get("token"));
     } catch (error) {
       toast.error(error.response.data.message);
     }
